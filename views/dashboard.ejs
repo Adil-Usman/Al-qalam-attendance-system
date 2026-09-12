@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Attendance System</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <div class="navbar">
+    <div class="brand">
+      <i class="bi bi-mortarboard-fill"></i> Attendance System
+    </div>
+    <div class="nav-links">
+      <span>Welcome, <%= user.name %></span>
+      <a href="/auth/logout"><i class="bi bi-box-arrow-right"></i> Logout</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Dashboard</h1>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom: 8px;">Hello, <%= user.name %> 👋</h3>
+      <p style="color: #65676b;">Role: <strong><%= user.role %></strong></p>
+    </div>
+
+    <div class="card">
+      <h3 style="margin-bottom: 20px;">Quick Actions</h3>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px;">
+
+        <!-- Manage Students -->
+        <a href="/students" class="btn btn-primary" style="padding: 18px; text-align: center;">
+          <i class="bi bi-people-fill" style="font-size: 24px; display: block; margin-bottom: 8px;"></i>
+          Manage Students
+        </a>
+
+        <!-- Mark Attendance -->
+        <a href="/attendance" class="btn btn-success" style="padding: 18px; text-align: center;">
+          <i class="bi bi-calendar-check-fill" style="font-size: 24px; display: block; margin-bottom: 8px;"></i>
+          Mark Attendance
+        </a>
+
+        <!-- Attendance History -->
+        <a href="/attendance/history" class="btn" style="padding: 18px; text-align: center; background: #6f42c1; color: white;">
+          <i class="bi bi-clock-history" style="font-size: 24px; display: block; margin-bottom: 8px;"></i>
+          Attendance History
+        </a>
+
+        <!-- Absent + WhatsApp (only for Message Faculty & Admin) -->
+        <% if (user.role === 'message_faculty' || user.role === 'admin') { %>
+          <a href="/absent" class="btn btn-whatsapp" style="padding: 18px; text-align: center;">
+            <i class="bi bi-whatsapp" style="font-size: 24px; display: block; margin-bottom: 8px;"></i>
+            Absent + WhatsApp
+          </a>
+        <% } %>
+
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

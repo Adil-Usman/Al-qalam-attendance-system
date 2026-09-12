@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Add Student - Attendance System</title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="brand">
+      <i class="bi bi-mortarboard-fill"></i> Attendance System
+    </div>
+    <div class="nav-links">
+      <a href="/students">← Back to Students</a>
+      <a href="/dashboard">Dashboard</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Add New Student</h1>
+    </div>
+
+    <div class="card" style="max-width: 650px;">
+      <form action="/students/add" method="POST">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" name="name" placeholder="Enter student full name" required>
+        </div>
+
+        <div class="form-group">
+          <label>Roll Number</label>
+          <input type="text" name="rollNumber" placeholder="Example: 101" required>
+        </div>
+
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px;">
+          <div class="form-group">
+            <label>Class</label>
+            <input type="text" name="className" placeholder="Example: 10" required>
+          </div>
+
+          <div class="form-group">
+            <label>Section</label>
+            <input type="text" name="section" placeholder="Example: A">
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Student Phone</label>
+          <input type="text" name="phone" placeholder="03XXXXXXXXX" required>
+        </div>
+
+        <div class="form-group">
+          <label>Parent Phone</label>
+          <input type="text" name="parentPhone" placeholder="03XXXXXXXXX">
+        </div>
+
+        <div class="form-group">
+          <label>Parent Name</label>
+          <input type="text" name="parentName" placeholder="Parent / Guardian name">
+        </div>
+
+        <button type="submit" class="btn btn-success" style="padding: 12px 28px; font-size: 15px;">
+          <i class="bi bi-plus-lg"></i> Add Student
+        </button>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mark Attendance - <%= className %></title>
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+  <style>
+    .present-check {
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      accent-color: #42b72a;
+    }
+    .student-row:hover {
+      background: #f8f9fa;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="navbar">
+    <div class="brand">
+      <i class="bi bi-mortarboard-fill"></i> Attendance System
+    </div>
+    <div class="nav-links">
+      <a href="/attendance">← Change Class</a>
+      <a href="/dashboard">Dashboard</a>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="page-header">
+      <h1>Class <%= className %> — <%= date %></h1>
+    </div>
+
+    <div class="card">
+      <form action="/attendance/mark" method="POST">
+        <input type="hidden" name="date" value="<%= date %>">
+        <input type="hidden" name="className" value="<%= className %>">
+
+        <div style="margin-bottom: 15px; color: #65676b;">
+          <i class="bi bi-info-circle"></i> 
+          Check the box if the student is <strong>Present</strong>. Leave unchecked for <strong>Absent</strong>.
+        </div>
+
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 90px;">Roll No</th>
+              <th>Student Name</th>
+              <th style="width: 140px; text-align: center;">Present</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% students.forEach(student => { 
+                 const currentStatus = attendanceMap[student._id.toString()] || 'Absent';
+                 const isPresent = currentStatus === 'Present';
+            %>
+              <tr class="student-row">
+                <td><%= student.rollNumber %></td>
+                <td><strong><%= student.name %></strong></td>
+                <td style="text-align: center;">
+                  <input 
+                    type="checkbox" 
+                    class="present-check"
+                    name="presentStudents" 
+                    value="<%= student._id %>"
+                    <%= isPresent ? 'checked' : '' %>
+                  >
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+
+        <div style="margin-top: 25px;">
+          <button type="submit" class="btn btn-success" style="padding: 12px 30px; font-size: 16px;">
+            <i class="bi bi-check-lg"></i> Save Attendance
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+</body>
+</html>
